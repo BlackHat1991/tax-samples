@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/ditsecws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BulkItrService" targetNamespace="http://incometaxindiaefiling.gov.in/ditsecws">
+  <wsdl:import location="https://incometaxindiaefiling.gov.in/e-FilingSecWS/ditsecws/BulkItrService?wsdl=EfilingWsSecPolicy.wsdl" namespace="http://incometaxindiaefiling.gov.in/ditsecws">
+    </wsdl:import>
+  <wsdl:types>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/ditsecws/response" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" elementFormDefault="qualified" targetNamespace="http://incometaxindiaefiling.gov.in/ditsecws/response" version="1.0">
+			
+  <xs:element name="BulkItrResponse" type="tns:BulkItrResponse"/>
+			
+  <xs:element name="DitResponse" type="tns:DitResponse"/>
+			
+  <xs:complexType name="BulkItrResponse">
+				
+    <xs:complexContent>
+					
+      <xs:extension base="tns:DitResponse">
+						
+        <xs:sequence>
+							
+          <xs:element minOccurs="0" name="tokenNumber" type="xs:string"/>
+						
+        </xs:sequence>
+					
+      </xs:extension>
+				
+    </xs:complexContent>
+			
+  </xs:complexType>
+			
+  <xs:complexType name="DitResponse">
+				
+    <xs:sequence>
+					
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:string"/>
+					
+      <xs:element minOccurs="0" name="ErrorDesc" type="xs:string"/>
+				
+    </xs:sequence>
+				
+    <xs:attribute name="uniqueRequestId" type="xs:string" use="required"/>
+			
+  </xs:complexType>
+		
+</xs:schema>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/ditsecws/request" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" elementFormDefault="qualified" targetNamespace="http://incometaxindiaefiling.gov.in/ditsecws/request" version="1.0">
+			
+  <xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+			
+  <xs:element name="BulkItrRequest" type="tns:BulkItrRequest"/>
+			
+  <xs:complexType name="BulkItrRequest">
+				
+    <xsd:sequence>
+					
+      <xsd:element minOccurs="1" name="dataHandler" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+				
+    </xsd:sequence>	
+				
+    <xs:attribute name="uniqueRequestId" use="required">
+					
+      <xsd:simpleType>
+						
+        <xsd:restriction base="xs:string">
+							
+          <xsd:pattern value="[A-Za-z0-9]{10}[/-][A-Za-z0-9]{4,29}"/>
+						
+        </xsd:restriction>
+					
+      </xsd:simpleType>
+				
+    </xs:attribute>
+			
+  </xs:complexType>
+		
+</xs:schema>
+<xs:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://incometaxindiaefiling.gov.in/ditsecws" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://incometaxindiaefiling.gov.in/ditsecws/response" xmlns:ns1="http://incometaxindiaefiling.gov.in/ditsecws/request" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://incometaxindiaefiling.gov.in/ditsecws">
+			
+  <xs:import namespace="http://incometaxindiaefiling.gov.in/ditsecws/request"/>
+			
+  <xs:import namespace="http://incometaxindiaefiling.gov.in/ditsecws/response"/>
+			
+  <xs:element name="uploadBulkItr" type="tns:uploadBulkItr"/>
+			
+  <xs:element name="uploadBulkItrResponse" type="tns:uploadBulkItrResponse"/>
+			
+  <xs:complexType name="uploadBulkItr">
+				
+    <xs:sequence>
+					
+      <xs:element minOccurs="1" name="DitRequest" type="ns1:BulkItrRequest"/>
+				
+    </xs:sequence>
+			
+  </xs:complexType>
+			
+  <xs:complexType name="uploadBulkItrResponse">
+				
+    <xs:sequence>
+					
+      <xs:element minOccurs="0" name="result" type="ns2:BulkItrResponse"/>
+				
+    </xs:sequence>
+			
+  </xs:complexType>
+		
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="uploadBulkItrResponse">
+    <wsdl:part element="tns:uploadBulkItrResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uploadBulkItr">
+    <wsdl:part element="tns:uploadBulkItr" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BulkItrService">
+    <wsdl:operation name="uploadBulkItr">
+      <wsdl:input message="tns:uploadBulkItr" name="uploadBulkItr">
+    </wsdl:input>
+      <wsdl:output message="tns:uploadBulkItrResponse" name="uploadBulkItrResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BulkItrServiceSoapBinding" type="tns:BulkItrService">
+    <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#EfilingWsSecPolicy"/>
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="uploadBulkItr">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="uploadBulkItr">
+        <soap:body use="literal"/>
+    <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#EfilingPartsPolicy"/>
+      </wsdl:input>
+      <wsdl:output name="uploadBulkItrResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BulkItrService">
+    <wsdl:port binding="tns:BulkItrServiceSoapBinding" name="BulkItrServicePort">
+      <soap:address location="https://incometaxindiaefiling.gov.in/e-FilingSecWS/ditsecws/BulkItrService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
