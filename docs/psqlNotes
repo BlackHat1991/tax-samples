@@ -1,0 +1,74 @@
+Install Sublime:
+----------------
+http://tipsonubuntu.com/2017/05/30/install-sublime-text-3-ubuntu-16-04-official-way/
+
+PGAmin 4 installation:
+----------------------
+https://askubuntu.com/questions/831262/how-to-install-pgadmin-4-in-desktop-mode-on-ubuntu
+
+http://suite.opengeo.org/docs/latest/dataadmin/pgGettingStarted/pgadmin.html
+
+
+update password:
+----------------
+ALTER USER user_name WITH PASSWORD 'new_password';
+
+
+Switching to postgres:
+----------------------
+sudo -i -u postgres
+
+Access:
+-------
+psql
+
+list all the Databases:
+-----------------------
+\l
+
+Connect Database:
+-----------------
+\connect databasename
+
+Show all tables:
+---------------
+\dt
+
+Describe Table:
+---------------
+\d tableName
+
+Create Database:
+-----------------
+CREATE DATABASE testdb1;
+
+Export Database schema:
+-----------------------
+pg_dump -U username -s databaseName > exportFile.sql
+
+Open War:
+---------
+jar -xvf yourWARfileName.war
+
+
+//Working
+https://www.journaldev.com/2668/spring-validation-example-mvc-validator
+
+Tomcat stop Service:(start,stop,restart,status)
+-----------------------------------------------
+sudo service tomcat7 stop
+
+
+git commit -m "added my github name"
+
+mvn install:install-file -Dfile= /home/codingmart/Documents/project/practo-spring/lib/practo-zoho.jar -DgroupId=com.zoho.code -DartifactId=zoho -Dversion=1.0 -Dpackaging=jar
+
+
+GIT PUSH:
+---------
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/BlackHat1991/Spring-boot-basic-crud.git
+git push -u origin master
+

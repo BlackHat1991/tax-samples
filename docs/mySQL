@@ -1,0 +1,12 @@
+MySQL DB notes:
+---------------
+username: root
+password: root
+
+1. Version Check:
+mysqladmin -p -u root version
+
+2. Access the MySQL shell
+mysql -u root -p
+
+3. SHOW DATABASES;

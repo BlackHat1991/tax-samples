@@ -1,0 +1,48 @@
+https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
+
+To list the file:
+-------------------
+keytool -list -v -keystore Pradeepbase.jks
+
+--------
+
+keytool -import -alias jdavies -file privatekey.pem -keystore Pradeepbase.jks
+																																																																																																																																																																																																																						
+
+keytool -import -alias pradeepbase -keystore cacerts -file privatekey.pem
+
+openssl x509 -outform der -in privatekey.pem-out certificate.der
+
+
+keytool -import -alias your_alias_name -keystore your_keystore_filename -file your_certificate_filename
+
+openssl verify -verbose -CAfile privatekey.pem  server.crt
+
+
+openssl pkcs12 -export -in Pradeepbase.cer -inkey domain.key -name [host] -out new-PKCS-12.p12
+
+Generate .p7b file:
+------------------
+https://www.ssl.com/how-to/combine-a-private-key-with-p7b-certificate-how-to-create-a-pfx-file/
+
+
+https://github.com/oktadeveloper/spring-boot-react-example/blob/master/server/src/main/java/com/example/demo/beer/BeerController.java
+
+Convert .pfx file to .jks:
+---------------------------
+keytool -importkeystore -srckeystore mypfxfile.pfx -srcstoretype pkcs12 -destkeystore clientcert.jks -deststoretype JKS
+
+Change Alias Name in existing .jks file:
+----------------------------------------
+keytool -changealias -keystore clientcert.jks -alias XXX-XXX-XXX-XXX-XXX -destalias MY_ALIAS
+
+Change Private Key Password:
+----------------------------
+keytool -keypasswd  -alias [Alias name for private key]  -keystore [path to key store]
+
+http://xacmlinfo.org/2014/05/26/how-to-keystore-changing-java-key-store-passwords/
+
+
+
+
+

@@ -1,0 +1,3 @@
+keytool -import -alias jdavies -file privatekey.pem -keystore Pradeepbase.jks
+
+																																																																																																																																																																																																																						keytool -list -v -keystore Pradeepbase.jks
